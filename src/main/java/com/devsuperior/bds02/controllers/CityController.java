@@ -39,7 +39,15 @@ public class CityController {
 	
 	@DeleteMapping(value = "/{id}")
 	public ResponseEntity<Void> delete(@PathVariable Long id) {
-		service.delete(id);
-		return ResponseEntity.noContent().build();
+		try {
+			service.delete(id);
+			return ResponseEntity.noContent().build();
+		} catch (Exception e) {
+			return ResponseEntity.badRequest().build();
+		}
+		
+		//return ResponseEntity.noContent().build();
 	}
+	
+	
 }
